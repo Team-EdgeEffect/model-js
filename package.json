@@ -1,0 +1,41 @@
+{
+    "name": "@edge-effect/model-js",
+    "version": "1.0.0",
+    "description": "make libraries for template",
+    "keywords": [
+        "request",
+        "response",
+        "axios",
+        "model"
+    ],
+    "homepage": "https://github.com/Team-EdgeEffect/model-js#readme",
+    "author": {
+        "name": "@Team-EdgeEffect#dark1451",
+        "email": "dark1451@gmail.com",
+        "url": "https://github.com/Team-EdgeEffect"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Team-EdgeEffect/model-js"
+    },
+    "bugs": {
+        "url": "https://github.com/Team-EdgeEffect/model-js/issues",
+        "email": "dark1451@gmail.com"
+    },
+    "scripts": {
+        "build": "rm -rf dist && tsc",
+        "deploy": "npm run build && npm publish --access=public"
+    },
+    "main": "dist/index.js",
+    "files": [
+        "/dist"
+    ],
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.59.9",
+        "@typescript-eslint/parser": "^5.59.9",
+        "eslint": "^8.42.0",
+        "typescript": "^5.1.3"
+    },
+    "dependencies": {},
+    "license": "MIT License"
+}
