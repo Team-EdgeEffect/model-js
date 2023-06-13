@@ -17,15 +17,15 @@ import {
 import { objectKeys } from "../utils/Utils";
 
 // base model types
-export interface BaseModelConstructor {
-    new (): BaseModel;
+export interface ModelConstructor {
+    new (): Model;
 }
 
 // export type Response<T = DefaultResponseDataType> = SuccessResponse<T> | ErrorResponse<T>;
 export type Response<T = DefaultResponseDataType> = BaseResponse<T>;
 // end of base model types
 
-export abstract class BaseModel {
+export abstract class Model {
     protected abstract getDomain(): string;
 
     protected createRequestHeaders(): Record<string, string> {
@@ -176,4 +176,4 @@ export abstract class BaseModel {
     }
 }
 
-export default BaseModel;
+export default Model;

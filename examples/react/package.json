@@ -2,7 +2,7 @@
     "name": "model-js-example-react",
     "version": "0.1.0",
     "dependencies": {
-        "@edge-effect/model-js": "^1.0.1",
+        "@edge-effect/model-js": "file:../../dist/edge-effect-model-js-0.1.1.tgz",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
@@ -18,6 +18,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
+        "ci": "CURRENT=$PWD && cd ../.. && npm run build-local && cd $CURRENT && npm ci",
+        "install-library": "CURRENT=$PWD && cd ../.. && npm run build-local && TARGET=$(ls dist/) && cd $CURRENT && npm install ../../dist/$TARGET",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",

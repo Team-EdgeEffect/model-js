@@ -3,7 +3,7 @@
 ## setup
 
 ```bash
-npm ci
+npm run ci
 ```
 
 ## to run

@@ -1,4 +1,4 @@
-import { getTestMessage } from "@edge-effect/model-js";
+import { Model } from "@edge-effect/model-js";
 
 console.log("model-js-example-node");
-console.log(getTestMessage());
+console.log(Model);
