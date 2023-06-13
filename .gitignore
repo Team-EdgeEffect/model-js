@@ -1,4 +1,4 @@
 node_modules/
 dist/
 
-edge-effect-model-js-*.tgz
+package-*.tgz

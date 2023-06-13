@@ -25,7 +25,7 @@
     "scripts": {
         "build": "rm -rf dist && tsc",
         "deploy": "npm run build && npm publish --access=public",
-        "build-local": "rm -rf dist && mkdir dist && npm pack --pack-destination=dist"
+        "build-local": "npm run build && TARGET=$(npm pack | tail -n 1) && mv $TARGET package-$TARGET && echo package-$TARGET"
     },
     "main": "dist/index.js",
     "files": [

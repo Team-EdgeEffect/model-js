@@ -4,8 +4,8 @@
     "description": "",
     "main": "src/index.js",
     "scripts": {
+        "install-package": "CURRENT=$PWD && cd ../.. && TARGET=$(npm run build-local | tail -n 1) && cd $CURRENT && npm install ../../$TARGET",
         "ci": "CURRENT=$PWD && cd ../.. && npm run build-local && cd $CURRENT && npm ci",
-        "install-library": "CURRENT=$PWD && cd ../.. && npm run build-local && TARGET=$(ls dist/) && cd $CURRENT && npm install ../../dist/$TARGET",
         "build": "webpack --config webpack.config.mjs --mode production",
         "build-dev": "webpack --config webpack.config.mjs --mode development",
         "start": "npm run build-dev && node dist/bundle.js"
@@ -21,6 +21,6 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "@edge-effect/model-js": "file:../../dist/edge-effect-model-js-0.1.1.tgz"
+        "@edge-effect/model-js": "file:../../package-edge-effect-model-js-0.1.1.tgz"
     }
 }
