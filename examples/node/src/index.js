@@ -1,5 +1,5 @@
-import { isResponseError, isResponseSuccess } from "@edge-effect/model-js";
-import SampleModel from "./model/SampleModel.js";
+const { isResponseError, isResponseSuccess } = require("@edge-effect/model-js");
+const SampleModel = require("./model/SampleModel");
 
 function toFriendly(data) {
     const isArrayData = Array.isArray(data);
@@ -27,7 +27,7 @@ async function main() {
     console.log(
         `request example 1: ${await doJob(async () => {
             let result = null;
-            const response = await sampleModel.current.getPost(1);
+            const response = await sampleModel.getPost(1);
             if (isResponseSuccess(response)) {
                 const content = response.content;
                 result = `Success: ${toFriendly(content)}`;
@@ -42,7 +42,7 @@ async function main() {
     console.log(
         `request example 2: ${await doJob(async () => {
             let result = null;
-            const response = await sampleModel.current.getPosts();
+            const response = await sampleModel.getPosts();
             if (isResponseSuccess(response)) {
                 const content = response.content;
                 result = `Success: ${toFriendly(content)}`;
@@ -56,4 +56,4 @@ async function main() {
     );
 }
 
-await main();
+main();

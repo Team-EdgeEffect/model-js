@@ -6,13 +6,14 @@
     "scripts": {
         "install-package": "CURRENT=$PWD && cd ../.. && TARGET=$(npm run build-local | tail -n 1) && cd $CURRENT && npm install ../../$TARGET",
         "ci": "CURRENT=$PWD && cd ../.. && npm run build-local && cd $CURRENT && npm ci",
-        "build": "webpack --config webpack.config.mjs --mode production",
-        "build-dev": "webpack --config webpack.config.mjs --mode development",
-        "start": "npm run build-dev && node dist/bundle.js"
+        "build": "webpack --config webpack.config.js --mode production",
+        "build-dev": "webpack --config webpack.config.js --mode development",
+        "start": "npm run build-dev && node dist/bundle.js",
+        "start-local": "node src/index.js"
     },
     "author": "",
     "license": "ISC",
-    "type": "module",
+    "type": "commonjs",
     "devDependencies": {
         "@babel/core": "^7.22.5",
         "@babel/preset-env": "^7.22.5",

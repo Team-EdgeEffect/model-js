@@ -1,6 +1,6 @@
-import { Model } from "@edge-effect/model-js";
+const { Model } = require("@edge-effect/model-js");
 
-export default class SampleModel extends Model {
+class SampleModel extends Model {
     getDomain() {
         return "https://jsonplaceholder.typicode.com";
     }
@@ -17,3 +17,5 @@ export default class SampleModel extends Model {
         });
     }
 }
+
+module.exports = SampleModel;
