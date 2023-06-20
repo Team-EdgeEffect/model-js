@@ -1,7 +1,7 @@
 {
     "name": "@edge-effect/model-js",
-    "version": "0.1.1",
-    "description": "make libraries for template",
+    "version": "1.0.0",
+    "description": "request / response model library based axios",
     "keywords": [
         "request",
         "response",
