@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { checkType } from "../system/Types";
 import { AxiosInstance } from ".";
 
-export type DefaultResponseDataType = Record<string, string>;
+export type DefaultResponseDataType = Record<string, any>;
 
 export interface RequestActions<T = DefaultResponseDataType> {
     overrideAxios?: AxiosInstance;
@@ -68,6 +68,6 @@ export declare const MethodTypes: ReadonlyArray<
     | typeof METHOD_OPTIONS
     | typeof METHOD_TRACE
 >;
-export type Method = typeof MethodTypes[number];
+export type Method = (typeof MethodTypes)[number];
 export declare function isMethod(): typeof checkType<Method>;
 // end of method
