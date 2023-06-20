@@ -2,22 +2,20 @@
 
 -   request / response model library based [axios@1.1.0](https://www.npmjs.com/package/axios)
 
--   typescript, javascript 지원
+-   typescript, javascript support
 
--   [view in english](http://www.google.co.kr)
-
-# 설치방법
+# How to install
 
 ```bash
 npm install @edge-effect/model-js
 ```
 
-# 사용법
+# How to use
 
-## 요청 집합에 대한 클래스 생성
+## Create a class for a set of requests
 
--   getDomain 함수는 abstract function으로 반드시 구현해야 합니다.
--   Model 클래스의 get/post/put/delete/request 함수 등에 대해 제너릭을 지정하지 않으면, 기본적으로 Record<string, any> 입니다.
+-   The getDomain function must be implemented as an abstract function.
+-   If you do not specify generics for the get/post/put/delete/request functions of the Model class, it is basically Record<string, any>.
 
 ```typescript
 import { Model } from "@edge-effect/model-js";
@@ -42,9 +40,9 @@ export default class SampleModel extends Model {
 }
 ```
 
-## 요청
+## Request
 
--   response 는 기본적으로 BaseResponse 를 반환합니다.
+-   response returns BaseResponse by default.
 
 ```typescript
 const sampleModel = new SampleModel();
@@ -54,27 +52,27 @@ async function updateUi() {
 }
 ```
 
-## BaseResponse 핸들링
+## BaseResponse handling
 
-### Response 클래스에 대한 설명
+### Description of the Response classes
 
--   Model 클래스의 get/post/put/delete/request 함수 등을 호출하면 아래 클래스가 반환됩니다.
+-   The following class is returned when calling the get/post/put/delete/request function of the Model class.
 
-    -   BaseResponse: SuccessResponse, ErrorResponse 등의 클래스가 상속 받은 클래스.
+    -   BaseResponse: Class inherited from classes such as SuccessResponse and ErrorResponse.
 
         ```typescript
         public native?: AxiosResponse;
         public content?: T;
         ```
 
-    -   SuccessResponse: 요청이 성공적인 요청인 상태의 반환 값, 여기서 성공적인 요청이란 http status code 가 200번대임을 말함.
+    -   SuccessResponse: The return value of the status that the request is a successful request, where a successful request means that the http status code is in the 200 range.
 
         ```typescript
         public native: AxiosResponse;
         public content: T;
         ```
 
-    -   ErrorResponse: 요청이 실패한 상태의 반환 값, http status code 가 200번대가 아니거나 기타 사유의 에러인 경우에 해당.
+    -   ErrorResponse: Return value of failed request, in case the http status code is not in the 200 range or an error for other reasons.
 
         ```typescript
         public native?: AxiosResponse;
@@ -82,13 +80,13 @@ async function updateUi() {
         public detail: Error;
         ```
 
-    -   InterceptResponse: request 함수에 action 파라미터를 통해 onPostIntercept 함수에서 InterceptResponse 를 반환하는 경우, 일반적으로 intercepted 된 응답 결과라고 보면 되며, 원하는 경우 그에 따른 적절한 처리를 하면 된다.
+    -   InterceptResponse: In case of returning InterceptResponse from onPostIntercept function through action parameter of request function, it can generally be regarded as an intercepted response result, and appropriate processing can be done accordingly if desired.
 
 ## Example
 
--   isResponseSuccess 로 response 를 체크하면 해당 블록에서 response 가 SuccessResponse 클래스 취급이 된다.
--   isResponseError 로 response 를 체크하면 해당 블록에서 response 가 ErrorResponse 클래스 취급이 된다.
--   일반적으로 else에 대한 처리를 하지 않아도 된다.
+-   If you check the response with isResponseSuccess, the response is treated as the SuccessResponse class in the corresponding block.
+-   If response is checked with isResponseError, response is treated as ErrorResponse class in the corresponding block.
+-   In general, it is not necessary to process the else.
 
 ```typescript
 import { isResponseError, isResponseSuccess } from "@edge-effect/model-js";
@@ -108,6 +106,6 @@ if (isResponseSuccess(response)) {
 }
 ```
 
-# 추가될 기능
+# Features to be added
 
--   음... 모든 아이디어는 환영입니다!
+-   Um... Any ideas are welcome!
