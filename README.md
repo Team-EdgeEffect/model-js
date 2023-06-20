@@ -4,7 +4,7 @@
 
 -   typescript, javascript 지원
 
--   [view in english](http://www.google.co.kr)
+-   [view in english](https://github.com/Team-EdgeEffect/model-js/blob/main/README_EN.md)
 
 # 설치방법
 
