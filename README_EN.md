@@ -106,6 +106,11 @@ if (isResponseSuccess(response)) {
 }
 ```
 
+# Try it yourself
+
+-   You can test this and that in the examples folder in the project
+-   node, react example provided
+
 # Features to be added
 
 -   Um... Any ideas are welcome!

@@ -108,6 +108,11 @@ if (isResponseSuccess(response)) {
 }
 ```
 
+# 직접 해보세요
+
+-   프로젝트 내 examples 폴더에서 이것저것 테스트가 가능합니다
+-   node, react example 제공
+
 # 추가될 기능
 
 -   음... 모든 아이디어는 환영입니다!
