@@ -14,14 +14,35 @@ npm install @edge-effect/model-js
 
 ## Create a class for a set of requests
 
+-   Inherit the provided Model class and implement the class for the request set.
 -   The getDomain function must be implemented as an abstract function.
--   If you do not specify generics for the get/post/put/delete/request functions of the Model class, it is basically Record<string, any>.
+-   If generics are not specified for the get/post/put/delete/custom functions of the Model class, it is basically Record<string, any>.
+-   You can specify default headers by overriding the Model.createRequestHeaders function
+-   By overriding the Model.createRequestConfig function, you can specify default values ​​related to requests. This value takes precedence over values ​​passed to get/post/put/delete/custom functions.
+-   By overriding the Model.onBuildKeyFormat function, you can define rules that create key values ​​for parameters (default value: {parentKey}.{key} or {key})
 
 ```typescript
 import { Model } from "@edge-effect/model-js";
 import Post from "../entity/Post";
 
-export default class SampleModel extends Model {
+export default class PostModel extends Model {
+    protected getDomain(): string {
+        return "https://jsonplaceholder.typicode.com";
+    }
+}
+```
+
+## Function implementation of the request set
+
+-   Requests can be configured easily by using the get/post/put/delete/custom functions implemented in the model.
+-   The params argument of the function configures the request url by configuring the get parameter.
+-   The datas argument of the function configures the request by constructing the body.
+
+```typescript
+import { Model } from "@edge-effect/model-js";
+import Post from "../entity/Post";
+
+export default class PostModel extends Model {
     protected getDomain(): string {
         return "https://jsonplaceholder.typicode.com";
     }
@@ -45,9 +66,11 @@ export default class SampleModel extends Model {
 -   response returns BaseResponse by default.
 
 ```typescript
-const sampleModel = new SampleModel();
+import PostModel from "./model/PostModel";
+
+const postModel = new PostModel();
 async function updateUi() {
-    const response = await sampleModel.getPost(1);
+    const response = await postModel.getPost(1);
     console.log(response);
 }
 ```
@@ -56,7 +79,7 @@ async function updateUi() {
 
 ### Description of the Response classes
 
--   The following class is returned when calling the get/post/put/delete/request function of the Model class.
+-   The following class is returned when calling the get/post/put/delete/custom function of the Model class.
 
     -   BaseResponse: Class inherited from classes such as SuccessResponse and ErrorResponse.
 
@@ -90,9 +113,12 @@ async function updateUi() {
 
 ```typescript
 import { isResponseError, isResponseSuccess } from "@edge-effect/model-js";
+import PostModel from "./model/PostModel";
+
+const postModel = new PostModel();
 
 // BaseResponse
-const response = await sampleModel.getPost(1);
+const response = await postModel.getPost(1);
 if (isResponseSuccess(response)) {
     // SuccessResponse
     // response.content becomes Post.class
@@ -111,6 +137,6 @@ if (isResponseSuccess(response)) {
 -   You can test this and that in the examples folder in the project
 -   node, react example provided
 
-# Features to be added
+# Regarding features to be added or suggestions for issues...
 
--   Um... Any ideas are welcome!
+-   All ideas are welcome!

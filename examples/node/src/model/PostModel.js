@@ -1,6 +1,6 @@
 const { Model } = require("@edge-effect/model-js");
 
-class SampleModel extends Model {
+class PostModel extends Model {
     getDomain() {
         return "https://jsonplaceholder.typicode.com";
     }
@@ -18,4 +18,4 @@ class SampleModel extends Model {
     }
 }
 
-module.exports = SampleModel;
+module.exports = PostModel;

@@ -1,5 +1,5 @@
 const { isResponseError, isResponseSuccess } = require("@edge-effect/model-js");
-const SampleModel = require("./model/SampleModel");
+const PostModel = require("./model/PostModel");
 
 function toFriendly(data) {
     const isArrayData = Array.isArray(data);
@@ -23,11 +23,11 @@ async function doJob(onRequestJob) {
 
 async function main() {
     console.log("model-js-example-node");
-    let sampleModel = new SampleModel();
+    let postModel = new PostModel();
     console.log(
         `request example 1: ${await doJob(async () => {
             let result = null;
-            const response = await sampleModel.getPost(1);
+            const response = await postModel.getPost(1);
             if (isResponseSuccess(response)) {
                 const content = response.content;
                 result = `Success: ${toFriendly(content)}`;
@@ -42,7 +42,7 @@ async function main() {
     console.log(
         `request example 2: ${await doJob(async () => {
             let result = null;
-            const response = await sampleModel.getPosts();
+            const response = await postModel.getPosts();
             if (isResponseSuccess(response)) {
                 const content = response.content;
                 result = `Success: ${toFriendly(content)}`;

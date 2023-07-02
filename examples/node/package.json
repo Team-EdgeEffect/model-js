@@ -22,6 +22,6 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "@edge-effect/model-js": "file:../../package-edge-effect-model-js-1.0.0.tgz"
+        "@edge-effect/model-js": "file:../../package-edge-effect-model-js-1.0.1.tgz"
     }
 }

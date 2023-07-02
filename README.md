@@ -16,14 +16,35 @@ npm install @edge-effect/model-js
 
 ## 요청 집합에 대한 클래스 생성
 
+-   제공되는 Model 클래스를 상속 받아 요청 집합에 대한 클래스를 구현합니다.
 -   getDomain 함수는 abstract function으로 반드시 구현해야 합니다.
--   Model 클래스의 get/post/put/delete/request 함수 등에 대해 제너릭을 지정하지 않으면, 기본적으로 Record<string, any> 입니다.
+-   Model 클래스의 get/post/put/delete/custom 함수 등에 대해 제너릭을 지정하지 않으면, 기본적으로 Record<string, any> 입니다.
+-   Model.createRequestHeaders 함수를 override 하여 기본 헤더를 지정 할 수 있습니다
+-   Model.createRequestConfig 함수를 override 하여 요청에 관련된 기본값을 지정 할 수 있습니다. 이 값은 get/post/put/delete/custom 함수에 전달된 값보다 우선 됩니다.
+-   Model.onBuildKeyFormat 함수를 override 하여 parameter의 key 값을 생성하는 규칙을 정의 할 수 있음 (기본값: {parentKey}.{key} or {key})
 
 ```typescript
 import { Model } from "@edge-effect/model-js";
 import Post from "../entity/Post";
 
-export default class SampleModel extends Model {
+export default class PostModel extends Model {
+    protected getDomain(): string {
+        return "https://jsonplaceholder.typicode.com";
+    }
+}
+```
+
+## 요청 집합의 함수 구현
+
+-   Model에 구현된 get/post/put/delete/custom 함수를 이용해서 쉽게 요청을 구성 할 수 있습니다.
+-   해당 함수의 params 인자는 get parameter를 구성하여 요청 url을 구성 합니다.
+-   해당 함수의 datas 인자는 body를 구성하여 요청을 구성 합니다.
+
+```typescript
+import { Model } from "@edge-effect/model-js";
+import Post from "../entity/Post";
+
+export default class PostModel extends Model {
     protected getDomain(): string {
         return "https://jsonplaceholder.typicode.com";
     }
@@ -47,9 +68,11 @@ export default class SampleModel extends Model {
 -   response 는 기본적으로 BaseResponse 를 반환합니다.
 
 ```typescript
-const sampleModel = new SampleModel();
+import PostModel from "./model/PostModel";
+
+const postModel = new PostModel();
 async function updateUi() {
-    const response = await sampleModel.getPost(1);
+    const response = await postModel.getPost(1);
     console.log(response);
 }
 ```
@@ -58,7 +81,7 @@ async function updateUi() {
 
 ### Response 클래스에 대한 설명
 
--   Model 클래스의 get/post/put/delete/request 함수 등을 호출하면 아래 클래스가 반환됩니다.
+-   Model 클래스의 get/post/put/delete/custom 함수 등을 호출하면 아래 클래스가 반환됩니다.
 
     -   BaseResponse: SuccessResponse, ErrorResponse 등의 클래스가 상속 받은 클래스.
 
@@ -92,9 +115,12 @@ async function updateUi() {
 
 ```typescript
 import { isResponseError, isResponseSuccess } from "@edge-effect/model-js";
+import PostModel from "./model/PostModel";
+
+const postModel = new PostModel();
 
 // BaseResponse
-const response = await sampleModel.getPost(1);
+const response = await postModel.getPost(1);
 if (isResponseSuccess(response)) {
     // SuccessResponse
     // response.content becomes Post.class
@@ -113,6 +139,6 @@ if (isResponseSuccess(response)) {
 -   프로젝트 내 examples 폴더에서 이것저것 테스트가 가능합니다
 -   node, react example 제공
 
-# 추가될 기능
+# 추가될 기능 또는 이슈 제안에 대하여...
 
--   음... 모든 아이디어는 환영입니다!
+-   모든 아이디어는 환영입니다!

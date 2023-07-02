@@ -36,8 +36,8 @@ export abstract class Model {
         return {};
     }
 
-    protected onBuildKeyFormat(parent_key: string, key: string): string {
-        return `${parent_key}.${key}`;
+    protected onBuildKeyFormat(key: string, parentKey?: string): string {
+        return parentKey ? `${parentKey}.${key}` : key;
     }
 
     protected get<T = DefaultResponseDataType>(request: BaseRequest, actions?: RequestActions<T>): Promise<Response<T>> {
@@ -151,6 +151,9 @@ export abstract class Model {
                 checkIteratable: (data) => {
                     return data.constructor === Object;
                 },
+                onCreateKey: (key, parentKey) => {
+                    return this.onBuildKeyFormat(key, parentKey);
+                },
                 onFoundKey: (key, data) => {
                     formData.append(key, data);
                 },
@@ -160,6 +163,9 @@ export abstract class Model {
             const tempObject: Record<string, string> = {};
             objectKeys({
                 data,
+                onCreateKey: (key, parentKey) => {
+                    return this.onBuildKeyFormat(key, parentKey);
+                },
                 onFoundKey: (key, data) => {
                     if (typeof data === "string") {
                         tempObject[key] = data;

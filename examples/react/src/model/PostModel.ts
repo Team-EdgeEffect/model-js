@@ -1,7 +1,7 @@
 import { Model } from "@edge-effect/model-js";
-import Post from "../entity/Post";
+import { Post } from "../dto/PostDto";
 
-export default class SampleModel extends Model {
+export default class PostModel extends Model {
     protected getDomain(): string {
         return "https://jsonplaceholder.typicode.com";
     }
