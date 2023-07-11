@@ -4,6 +4,8 @@
 
 -   typescript, javascript support
 
+-   [view in npm](https://www.npmjs.com/package/@edge-effect/model-js)
+
 # How to install
 
 ```bash
