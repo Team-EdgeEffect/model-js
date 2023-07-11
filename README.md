@@ -4,6 +4,8 @@
 
 -   typescript, javascript 지원
 
+-   [view in npm](https://www.npmjs.com/package/@edge-effect/model-js)
+
 -   [view in english](https://github.com/Team-EdgeEffect/model-js/blob/main/README_EN.md)
 
 # 설치방법
