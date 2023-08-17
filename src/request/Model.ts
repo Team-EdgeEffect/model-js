@@ -9,6 +9,7 @@ import {
     ErrorResponse,
     METHOD_DELETE,
     METHOD_GET,
+    METHOD_PATCH,
     METHOD_POST,
     METHOD_PUT,
     RequestActions,
@@ -62,23 +63,34 @@ export abstract class Model {
         );
     }
 
-    protected delete<T = DefaultResponseDataType>(request: BaseRequest, actions?: RequestActions<T>): Promise<Response<T>> {
-        return this.request(
-            {
-                url: `${this.getDomain()}/${request.path}`,
-                ...request,
-                method: METHOD_DELETE,
-            },
-            actions
-        );
-    }
-
     protected put<T = DefaultResponseDataType>(request: BaseRequest, actions?: RequestActions<T>): Promise<Response<T>> {
         return this.request(
             {
                 url: `${this.getDomain()}/${request.path}`,
                 ...request,
                 method: METHOD_PUT,
+            },
+            actions
+        );
+    }
+
+    protected patch<T = DefaultResponseDataType>(request: BaseRequest, actions?: RequestActions<T>): Promise<Response<T>> {
+        return this.request(
+            {
+                url: `${this.getDomain()}/${request.path}`,
+                ...request,
+                method: METHOD_PATCH,
+            },
+            actions
+        );
+    }
+
+    protected delete<T = DefaultResponseDataType>(request: BaseRequest, actions?: RequestActions<T>): Promise<Response<T>> {
+        return this.request(
+            {
+                url: `${this.getDomain()}/${request.path}`,
+                ...request,
+                method: METHOD_DELETE,
             },
             actions
         );
