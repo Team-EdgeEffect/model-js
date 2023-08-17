@@ -6,7 +6,7 @@
 
 -   [view in npm](https://www.npmjs.com/package/@edge-effect/model-js)
 
--   [view in english](https://github.com/Team-EdgeEffect/model-js/blob/main/README_EN.md)
+-   [view in english](https://github.com/Team-EdgeEffect/model-js/blob/main/README.en-us.md)
 
 # 설치방법
 
