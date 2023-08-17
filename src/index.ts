@@ -9,4 +9,3 @@ export * from "./utils/MimeTypes";
 import * as axiosPackage from "axios";
 export const axios = axiosPackage.default;
 export const defaultAxios = axios.create();
-export const HttpStatusCode = axiosPackage.HttpStatusCode;

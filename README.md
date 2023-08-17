@@ -1,6 +1,6 @@
 # model-js
 
--   request / response model library based [axios@1.1.0](https://www.npmjs.com/package/axios)
+-   request / response model library based [axios@1.2.2](https://www.npmjs.com/package/axios)
 
 -   typescript, javascript 지원
 
