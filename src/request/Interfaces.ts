@@ -1,6 +1,5 @@
-import { AxiosResponse } from "axios";
+import { AxiosInstance, AxiosResponse } from "axios";
 import { checkType } from "../system/Types";
-import { AxiosInstance } from ".";
 
 export type DefaultResponseDataType = Record<string, any>;
 

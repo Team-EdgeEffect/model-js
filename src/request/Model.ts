@@ -135,8 +135,10 @@ export abstract class Model {
             isEnableRequestLogging() && console.error(error);
             if (axios.isAxiosError(error)) {
                 response = new ErrorResponse(error, error?.response, error?.response?.data);
+            } else if (error instanceof Error) {
+                response = new ErrorResponse(error);
             } else {
-                response = new ErrorResponse(error, null, null);
+                response = new ErrorResponse(new Error(error?.toString() || "unknown exception"));
             }
         }
 

@@ -1,7 +1,7 @@
 interface ObjectKeysArgs {
     data: Record<string, any>;
     onFoundKey: (key: string, data: any) => void;
-    onCreateKey?: (key: string, parentKey?: string | null) => string;
+    onCreateKey?: (key: string, parentKey?: string) => string;
     checkIteratable?: (data: any) => boolean;
     parentKey?: string; // 재귀시에 사용됨
 }
