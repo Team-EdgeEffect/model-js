@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { defaultAxios } from "../index";
-import { isEnableRequestLogging } from ".";
+import { defaultAxios, modelJsConfig } from "../index";
 import {
     BaseRequest,
     BaseResponse,
@@ -132,13 +131,17 @@ export abstract class Model {
                 response = new SuccessResponse(axiosResponse, axiosResponse.data);
             }
         } catch (error) {
-            isEnableRequestLogging() && console.error(error);
+            modelJsConfig.enableRequestLogging && console.error(error);
             if (axios.isAxiosError(error)) {
                 response = new ErrorResponse(error, error?.response, error?.response?.data);
             } else if (error instanceof Error) {
                 response = new ErrorResponse(error);
             } else {
                 response = new ErrorResponse(new Error(error?.toString() || "unknown exception"));
+            }
+
+            if (modelJsConfig.throwable) {
+                throw error;
             }
         }
 

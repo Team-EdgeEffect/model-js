@@ -1,6 +1,6 @@
 {
     "name": "@edge-effect/model-js",
-    "version": "1.4.3",
+    "version": "1.5.0",
     "description": "request / response model library based axios",
     "keywords": [
         "request",

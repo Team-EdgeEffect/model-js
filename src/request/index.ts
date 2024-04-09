@@ -21,11 +21,3 @@ export const setRequestDefaultsConfig = (initial: (coreDefaults: AxiosCoreDefaul
 export const setRequestConfigs = (initial: (core: AxiosInstance, coreDefaults: AxiosCoreDefaults) => void) => {
     initial(defaultAxios, defaultAxios.defaults);
 };
-
-let enableRequestLogging = false;
-export const isEnableRequestLogging = () => {
-    return enableRequestLogging;
-};
-export const setRequestLogging = (isEnable: boolean) => {
-    enableRequestLogging = isEnable;
-};

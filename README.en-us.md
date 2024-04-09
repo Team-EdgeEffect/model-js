@@ -134,6 +134,10 @@ if (isResponseSuccess(response)) {
 }
 ```
 
+# Config
+
+TBU...
+
 # Try it yourself
 
 -   You can test this and that in the examples folder in the project
